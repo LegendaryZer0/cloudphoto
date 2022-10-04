@@ -1,0 +1,9 @@
+#accessKey: YCAJE5qhoI8qXa4LCKDCiDyPW
+#secretKey: YCMOK5G0IC5J9Ok5bYxiGdxQXxAGg_Ewl3QkEutp
+#app:
+#  bucket:
+#    name: album-bucket
+
+spring:
+  main:
+    banner-mode: "off"
