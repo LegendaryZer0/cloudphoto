@@ -33,8 +33,8 @@ public class AlbumService {
     public Album saveAlbum(String name) {
         AlbumDtoList albumDtoList = getAllAlbumsDto();
         Album newAlbum = Album.builder().name(name).build();
-        albumDtoList.getAlbumList().add(newAlbum); //fixme  duplicate code
-        albumDtoList.setAlbumList(new LinkedHashSet<>(albumDtoList.getAlbumList()).stream().toList()); //todo optimize code
+        albumDtoList.getAlbumList().add(newAlbum);
+        albumDtoList.setAlbumList(new LinkedHashSet<>(albumDtoList.getAlbumList()).stream().toList());
         yandexS3.putObject(configHelper.getParamFromIniDefaultSection(OPTION_BUCKET), INDEX_ALBUMS_JSON,
                 objectMapperUtil.writeValueAsString(albumDtoList));
         return newAlbum;

@@ -37,11 +37,11 @@ public class SiteService {
         List<Album> albumList = albumService.getAllAlbumsDto().getAlbumList();
         File file = generateAlbumSitePage(albumList);
         File errorPage = generateErrorSitePage();
-        List<File> albumPhotoPageList = generateAlbumContentPageList(albumList); //fixme
+        List<File> albumPhotoPageList = generateAlbumContentPageList(albumList);
         try {
 
             transferManager.upload(configHelper.getParamFromIniDefaultSection(OPTION_BUCKET), file.getName(), file)
-                    .waitForCompletion();  //todo file uploads helper/util
+                    .waitForCompletion();
             transferManager.upload(configHelper.getParamFromIniDefaultSection(OPTION_BUCKET), errorPage.getName(), errorPage)
                     .waitForCompletion();
             albumPhotoPageList.forEach(albumPhotosPage -> {

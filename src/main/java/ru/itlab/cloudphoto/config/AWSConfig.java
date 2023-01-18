@@ -8,10 +8,13 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.transfer.TransferManager;
 import com.amazonaws.services.s3.transfer.TransferManagerBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.tika.Tika;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 import ru.itlab.cloudphoto.helper.ConfigHelper;
+
+import java.util.Scanner;
 
 import static ru.itlab.cloudphoto.constant.AWSConstant.SERVICE_ENDPOINT;
 import static ru.itlab.cloudphoto.constant.AWSConstant.SIGNING_REGION;
@@ -50,4 +53,17 @@ public class AWSConfig {
     public TransferManager transferManager(AmazonS3 amazonS3) {
         return TransferManagerBuilder.standard().withS3Client(amazonS3).build();
     }
+
+    @Lazy
+    @Bean
+    public Scanner scanner(){
+        return new Scanner(System.in);
+    }
+
+    @Lazy
+    @Bean
+    public Tika tika(){
+        return new Tika();
+    }
+
 }

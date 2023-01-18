@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tika.Tika;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 import picocli.CommandLine;
 import ru.itlab.cloudphoto.service.AlbumService;
@@ -19,13 +20,13 @@ import java.util.Objects;
 
 @Component
 @CommandLine.Command(name = "upload", description = "cloudphoto upload command")
-@RequiredArgsConstructor
+@RequiredArgsConstructor(onConstructor = @__(@Lazy))
 @Slf4j
 public class UploadCommand implements Runnable {
 
     private final PhotoService photoService;
     private final AlbumService albumService;
-    private final Tika tika = new Tika(); //todo Autowire
+    private final Tika tika;
     @Getter
     @Setter
     @CommandLine.Option(names = "--album", description = "album name", required = true)

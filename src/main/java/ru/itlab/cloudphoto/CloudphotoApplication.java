@@ -26,8 +26,7 @@ public class CloudphotoApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        System.out.println(Arrays.toString(args)); //fixme
         int exitCode = new CommandLine(commandResolver, factory).execute(args);
-        System.exit(exitCode); //fixme
+        System.exit(exitCode);
     }
 }
